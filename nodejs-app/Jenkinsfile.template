@@ -89,11 +89,9 @@ spec:
       options {
         timeout(time: 60, unit: 'SECONDS') 
       }
-      post {
-       aborted {
+      steps {
         echo "Why didn't you push my button?"
        }
-      }
     }
     }
 }
