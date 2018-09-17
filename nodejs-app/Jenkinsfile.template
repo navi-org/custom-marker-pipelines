@@ -78,7 +78,6 @@ spec:
          }
          steps {
             echo "TODO - build and push image"
-            unstash 'app'
          }
       }
      stage('Deploy') {
