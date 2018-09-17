@@ -27,13 +27,10 @@ pipeline {
       options {
         timeout(time: 60, unit: 'SECONDS') 
       }
-      input {
-        message "Should we deploy?"
-        submitter "teams"
-        submitterParameter "APPROVER"
-      }
-      steps {
-        echo "Continuing with deployment - approved by ${APPROVER}"
+      post {
+       aborted {
+        echo "Why didn't you push my button?"
+       }
       }
     }
    }
