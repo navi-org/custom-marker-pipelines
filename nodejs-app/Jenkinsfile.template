@@ -60,10 +60,12 @@ pipeline {
       options {
         timeout(time: 60, unit: 'SECONDS') 
       }
+      steps {
       post {
        aborted {
         echo "Why didn't you push my button?"
        }
+      }
       }
     }
    }
