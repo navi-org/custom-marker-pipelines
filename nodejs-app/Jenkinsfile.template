@@ -29,18 +29,26 @@ pipeline {
                       """
             }
       }
-        steps { 
-          checkout scm
-          container('nodejs') {
-            echo 'Hello World!'              
-            sh 'node --version'
-          }
+        steps {
+        checkout scm
+        container('nodejs') {
+          sh '''
+            npm install express
+            npm install pug --save
+            node ./hello.js &
+          '''
         }
-        post {
+        container('testcafe') {
+          sh '/opt/testcafe/docker/testcafe-docker.sh "chromium --no-sandbox,firefox" tests/*.js -r xunit:res.xml'
+        }
+      }
+       post {
         success {
           stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
         }
-      }
+        always {
+          junit 'res.xml'
+        }
       }
       stage('Build and Push Image') {
          when {
