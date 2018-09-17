@@ -19,7 +19,7 @@ pipeline {
             echo "TODO - build and push image"
          }
       }
-      stage('Deploy') {
+     stage('Deploy') {
       when {
         beforeAgent true
         branch 'master'
@@ -29,7 +29,7 @@ pipeline {
       }
       input {
         message "Should we deploy?"
-        submitter "beedemo-ops"
+        submitter "teams"
         submitterParameter "APPROVER"
       }
     }
