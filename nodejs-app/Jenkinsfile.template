@@ -70,7 +70,7 @@ spec:
         }
       }    
     }
-    } 
+    
     stage('Build and Push Image') {
          when {
             beforeAgent true
@@ -94,5 +94,6 @@ spec:
         echo "Why didn't you push my button?"
        }
       }
+    }
     }
 }
